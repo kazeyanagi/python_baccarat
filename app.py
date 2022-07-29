@@ -49,6 +49,14 @@ def sum_banker_card(banker_card):
         banker[1] = 0
     return banker[0] + banker[1]
 
+def sum_card(cards):
+    result = copy.deepcopy(banker_cards)
+    if result[0] > 9:
+        result[0] = 0
+    if result[1] > 9:
+        result[1] = 0
+    return result[0] + result[1]
+
 def third_player(player_card, player_score):
     # 条件に合致すれば3枚目を追加する
     if (player_score) < 6:
@@ -199,8 +207,8 @@ def run():
                 print('プレイヤー:' + str(player_card))
                 print('バンカー:' + str(banker_card))
                 # プレイヤー2枚の合計とバンカー2枚の合計を計算する
-                player_score = sum_player_card(player_card)
-                banker_score = sum_banker_card(banker_card)
+                player_score = sum_card(player_card)
+                banker_score = sum_card(banker_card)
                 # 3枚目の追加が必要であれば追加する
                 player_card = third_player(player_card, player_score)
                 banker_card = third_banker(player_card, banker_card, player_score, banker_score)
